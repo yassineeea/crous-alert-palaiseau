@@ -81,11 +81,12 @@ def main():
 
     logements = get_logements()
 
-    send_telegram("✅ CROUS bot test is working")
 
     if os.path.exists(STATE_FILE):
 
-        with open(STATE_FILE) as f:
+        with open(
+            STATE_FILE
+        ) as f:
             old = json.load(f)
 
     else:
