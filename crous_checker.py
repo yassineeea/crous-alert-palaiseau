@@ -6,9 +6,8 @@ from bs4 import BeautifulSoup
 
 URL = "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.19174_48.7300913_2.2668688_48.700804&locationName=Palaiseau+%2891120%29"
 
-
-TELEGRAM_TOKEN = os.environ["8706249622:AAFy4qGJxIY1T4JyL6HVEkrtGwvIOEtazmg"]
-CHAT_ID = os.environ["8979746858"]
+TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
 STATE_FILE = "seen.json"
 
