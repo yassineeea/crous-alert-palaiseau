@@ -5,10 +5,16 @@ from bs4 import BeautifulSoup
 
 VILLES = {
     "Palaiseau": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.19174_48.7300913_2.2668688_48.700804&locationName=Palaiseau+%2891120%29",
-    "Massy":     "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.2350_48.7450_2.3100_48.7150&locationName=Massy+%2891300%29",
-    "Orsay":     "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.1350_48.7140_2.2100_48.6840&locationName=Orsay+%2891400%29",
-    "Grenoble":     "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=6.1360042_49.1487955_6.256451_49.0608244&locationName=Metz",
-    "Paris":  "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.224122_48.902156_2.4697602_48.8155755&locationName=Paris",
+    "Massy": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.2350_48.7450_2.3100_48.7150&locationName=Massy+%2891300%29",
+    "Orsay": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.1350_48.7140_2.2100_48.6840&locationName=Orsay+%2891400%29",
+    "Gif-sur-Yvette": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.0958688_48.7184219_2.1725309_48.6740284&locationName=Gif-sur-Yvette+%2891190%29",
+    "Bures-sur-Yvette": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.1414182_48.7070448_2.1762154_48.675628&locationName=Bures-sur-Yvette+%2891440%29",
+    "Antony": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.274543_48.7721397_2.3206998_48.7293024&locationName=Antony+%2892160%29",
+    "Cachan": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.3186757_48.8015527_2.3449625_48.7812228&locationName=Cachan+%2894230%29",
+    "Sceaux": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.2782666_48.7854458_2.3142729_48.7665986&locationName=Sceaux+%2892330%29",
+    "Évry": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.4130316_48.6485333_2.4705092_48.6109217&locationName=%C3%89vry+%2891000%29",
+    "Versailles": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.0699384_48.82861_2.1683504_48.7792297&locationName=Versailles+%2878000%29",
+    "Paris": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.224122_48.902156_2.4697602_48.8155755&locationName=Paris",
 }
 
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
@@ -48,7 +54,13 @@ def main():
     new_state = {}
 
     for ville, url in VILLES.items():
-        logements = get_logements(url)
+        try:
+            logements = get_logements(url)
+        except Exception as e:
+            print(f"[{ville}] ERROR fetching: {e}")
+            new_state[ville] = old_state.get(ville, [])  # keep old state, don't wipe it
+            continue
+
         print(f"[{ville}] Found {len(logements)} logement(s)")
 
         old_urls = old_state.get(ville, [])
