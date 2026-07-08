@@ -7,8 +7,8 @@ VILLES = {
     "Palaiseau": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.19174_48.7300913_2.2668688_48.700804&locationName=Palaiseau+%2891120%29",
     "Massy":     "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.2350_48.7450_2.3100_48.7150&locationName=Massy+%2891300%29",
     "Orsay":     "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.1350_48.7140_2.2100_48.6840&locationName=Orsay+%2891400%29",
-    "Paris":     "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=5.6776059_45.2140762_5.7531176_45.1541442&locationName=Grenoble",
-    "Grenoble":  "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.224122_48.902156_2.4697602_48.8155755&locationName=Paris",
+    "Grenoble":     "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=6.1360042_49.1487955_6.256451_49.0608244&locationName=Metz",
+    "Paris":  "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.224122_48.902156_2.4697602_48.8155755&locationName=Paris",
 }
 
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
