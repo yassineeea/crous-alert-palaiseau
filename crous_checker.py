@@ -80,7 +80,8 @@ def send_telegram(message):
 def main():
 
     logements = get_logements()
-
+    
+    send_telegram("✅ CROUS bot test is working")
 
     if os.path.exists(STATE_FILE):
 
