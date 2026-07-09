@@ -16,6 +16,7 @@ VILLES = {
     "Versailles": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.0699384_48.82861_2.1683504_48.7792297&locationName=Versailles+%2878000%29",
     "Paris": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.224122_48.902156_2.4697602_48.8155755&locationName=Paris",
     "Ile-de-France" : "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=1.4462445_49.241431_3.5592208_48.1201456&locationName=%C3%8Ele-de-France",
+    "Agen" : "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=0.6026662_44.2237801_0.6576922_44.1782874&locationName=Agen+%2847000%29",
 }
 
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
