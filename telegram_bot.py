@@ -11,6 +11,15 @@ TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
 OFFSET_FILE = "telegram_offset.json"
 
+FRANCE_URL = "https://trouverunlogement.lescrous.fr/tools/47/search"
+
+def check_france_total():
+    try:
+        logements = get_logements(FRANCE_URL)
+    except Exception as e:
+        return f"⚠️ Erreur: {e}"
+    return f"{len(logements)} logements trouvés en France"
+    
 
 def get_updates(offset):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/getUpdates"
@@ -82,6 +91,8 @@ def main():
             send_telegram(check_all_villes())
         elif text.lower().startswith("/check "):
             send_telegram(check_one_ville(text[len("/check "):].strip()))
+        elif text.lower() in ("/total", "/france"):
+            send_telegram(check_france_total())
         elif text.lower() in ("/start", "/help"):
             send_telegram(
                 "🤖 Commandes disponibles:\n"
