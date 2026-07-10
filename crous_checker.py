@@ -18,6 +18,13 @@ VILLES = {
     "Ile-de-France" : "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=1.4462445_49.241431_3.5592208_48.1201456&locationName=%C3%8Ele-de-France",
 }
 
+# Villes consultables via /check mais SANS notification automatique
+VILLES_ON_DEMAND = {
+    "Metz": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=6.1360042_49.1487955_6.256451_49.0608244&locationName=Metz",
+    "Agen": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=0.6026662_44.2237801_0.6576922_44.1782874&locationName=Agen+%2847000%29",
+    "Lille": "https://trouverunlogement.lescrous.fr/tools/47/search?bounds=2.9679677_50.6612596_3.125725_50.6008264&locationName=Lille",
+}
+
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
