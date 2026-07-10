@@ -2,7 +2,9 @@ import requests
 import json
 import os
 
-from crous_checker import VILLES, get_logements
+from crous_checker import VILLES, VILLES_ON_DEMAND, get_logements
+
+ALL_VILLES = {**VILLES, **VILLES_ON_DEMAND}
 
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
@@ -41,12 +43,11 @@ def check_all_villes():
     lines.append(f"\nTotal: {total} logement(s) sur {len(VILLES)} ville(s).")
     return "\n".join(lines)
 
-
 def check_one_ville(name):
-    match = next((v for v in VILLES if v.lower() == name.lower()), None)
+    match = next((v for v in ALL_VILLES if v.lower() == name.lower()), None)
     if not match:
-        return f"❌ Ville inconnue: {name}\nVilles suivies: {', '.join(VILLES.keys())}"
-    logements = get_logements(VILLES[match])
+        return f"❌ Ville inconnue: {name}\nVilles suivies: {', '.join(ALL_VILLES.keys())}"
+    logements = get_logements(ALL_VILLES[match])
     if not logements:
         return f"— Aucun logement actuellement à {match}."
     msg = f"🏠 {len(logements)} logement(s) à {match} :\n\n"
@@ -84,11 +85,12 @@ def main():
         elif text.lower() in ("/start", "/help"):
             send_telegram(
                 "🤖 Commandes disponibles:\n"
-                "/check — état de toutes les villes suivies\n"
-                "/check <ville> — état d'une ville précise\n"
-                f"Villes suivies: {', '.join(VILLES.keys())}"
-            )
-
+                "/check — état des villes auto-surveillées\n"
+                "/check <ville> — état d'une ville précise (auto ou à la demande)\n\n"
+                f"Auto-surveillées: {', '.join(VILLES.keys())}\n\n"
+                f"Consultables sur demande: {', '.join(VILLES_ON_DEMAND.keys())}"
+                                                                                        )
+    
     with open(OFFSET_FILE, "w") as f:
         json.dump({"offset": offset}, f)
 
